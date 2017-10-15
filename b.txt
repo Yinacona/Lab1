@@ -3,4 +3,9 @@ To seek out new life and new civilizations?
 to explore new and strange life,
 to go new,
 to walk new,
+<<<<<<< HEAD
 dddd
+=======
+Just add something...
+kkkkk
+>>>>>>> s1b

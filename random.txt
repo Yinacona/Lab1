@@ -11,7 +11,11 @@ explore new worlds to go new life and new and strange new to seek out new civili
 life and new worlds to go new life to seek out new and strange new to walk new civilizations to
 test of github
 <<<<<<< HEAD
+<<<<<<< HEAD
 Just add something...bs2
 =======
 Just add something...
 >>>>>>> 1150310119
+=======
+Just add something...gggg
+>>>>>>> s1b

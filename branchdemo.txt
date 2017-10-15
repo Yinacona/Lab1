@@ -1,5 +1,9 @@
 This is branchdemo.txt...
 <<<<<<< HEAD
+<<<<<<< HEAD
 b2
 =======
 >>>>>>> 1150310119
+=======
+ddd
+>>>>>>> s1b
