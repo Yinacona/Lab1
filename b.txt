@@ -3,4 +3,8 @@ To seek out new life and new civilizations?
 to explore new and strange life,
 to go new,
 to walk new,
+<<<<<<< HEAD
 Just add something...115
+=======
+Just add something...
+>>>>>>> newone/master
