@@ -1,7 +1,7 @@
-package Lab1final;
+﻿package Lab1;
 
 import java.io.*;
-import java.util.Scanner;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -27,14 +27,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+ // @author OB
 import java.sql.BatchUpdateException;
 //import sun.awt.AWTAccessor.ToolkitAccessor;
 
 
 
 /**
- *
- * @author OB
  *GUIdesign
  */
 
@@ -44,25 +44,24 @@ import java.sql.BatchUpdateException;
 
 
 
-public class main extends JFrame implements ActionListener{
-    private BufferedImage bgImage;
-    public static String fileskin=new String();
-
+public class main extends JFrame implements ActionListener {
+    private BufferedImage bgImage;//
+    private static String Fileskin = new String();
     public  main() throws Exception{
 
     }
     public void paint(Graphics g) {
         g.drawImage(bgImage, 0, 0, this.getWidth(), this.getHeight(), this);
     }
-    public static String randomwalklocate="random.txt"; //随机游走存储路径
-    public static int flsg=1;
+    private static String randomwalklocate="随机游走.txt"; //随机游走存储路径
+    private static int flsg=1;
     public static String finalstr0=new String();
     public static Graph G0;
     public static void clear() throws AWTException
     {
         Robot r = new Robot();
-        r.mousePress(InputEvent.BUTTON3_MASK);       // 按下鼠标右键
-        r.mouseRelease(InputEvent.BUTTON3_MASK);    // 释放鼠标右键
+    r.mousePress(InputEvent.BUTTON3_MASK);       // 按下鼠标右键
+    r.mouseRelease(InputEvent.BUTTON3_MASK);    // 释放鼠标右键
         r.keyPress(KeyEvent.VK_CONTROL);             // 按下Ctrl键
         r.keyPress(KeyEvent.VK_R);                    // 按下R键
         r.keyRelease(KeyEvent.VK_R);                  // 释放R键
@@ -71,13 +70,10 @@ public class main extends JFrame implements ActionListener{
 
     }
     public static void main(String[] args) throws Exception{
-
-
-
         main mf=new main();
 
-        fileskin="z.jpg";
-        mf.bgImage=ImageIO.read(new File(fileskin));
+        Fileskin="z.jpg";
+        mf.bgImage=ImageIO.read(new File(Fileskin));
         mf.setTitle("测试");
         mf.setBounds(300, 100, 1200, 750);
         mf.setBackground(Color.GRAY);
@@ -261,7 +257,9 @@ public class main extends JFrame implements ActionListener{
                 jfc.showDialog(new JLabel(), "选择");
                 File file=jfc.getSelectedFile();
                 if(file.exists()&&file.isFile())strFile1 =file.getAbsolutePath();
-                finalstr0 = null;
+                {
+                    finalstr0 = null;
+                }
                 try {
                     finalstr0 = sd1.Strdeal(strFile1);
                 } catch (IOException e1) {
@@ -402,17 +400,22 @@ public class main extends JFrame implements ActionListener{
                             // TODO Auto-generated method stub
 
 //							if((flag1==-1)&&(flag2==1)) {
-//								System.out.println("No "+"\""+word1+"\""+" in the graph!");
+//								System.out.println("No "+"\""+
+//                                                 word1+"\""+"
+//                               in the graph!");
 //							}else if((flag1==1)&&(flag2==-1)){
 //								System.out.println("No "+"\""+word2+"\""+ "in the graph!");
 //							}else if((flag1==-1)&&(flag2==-1)){
-//								System.out.println("No "+"\""+word1+"\""+" and "+"\""+word2+"\""+ " in the graph!");
+//								System.out.println("No "+"\""+word1+"\""+" and
+//
+//                              "+"\""+word2+"\""+ " in the graph!");
 //							}else if((flag1==1)&&(flag2==1)&&(flagc==0)){
 //								System.out.println("No bridge words from \""+word1+"\" to \""+word2+"\"!");
 //							}
 
 
-                            String bridge1st=null,bridge2nd=null;
+                            String bridge1st=null;
+                            String bridge2nd=null;
                             bridge1st=textfieldbridgeword1.getText().toString();
                             bridge2nd=textfieldbridgeword2.getText().toString();
                             String finalbridge=G0.queryBridgeWords(bridge1st, bridge2nd);
@@ -481,7 +484,7 @@ public class main extends JFrame implements ActionListener{
                             String getstr=new String();
                             copystr=G0.generateNewText(sysinput);
 
-                            for(int i=0;i<copystr.length;i++) {
+                            for(int i=0;i<copystr.length;i++ ) {
                                 getstr=getstr+(newsplit[i]).toString()+" ";
                                 if(copystr[i]!=null) {
                                     getstr=getstr+(copystr[i]).toString()+" ";
@@ -542,7 +545,7 @@ public class main extends JFrame implements ActionListener{
                                     frame0.setDefaultCloseOperation(frame0.DISPOSE_ON_CLOSE);
                                 }
                                 File file = new File("ShortDotGraph"+CalcStart+CalcEnd+".jpg");
-//							if (file.exists()&& file.isFile()) file.delete();
+//                               if (file.exists()&& file.isFile()) file.delete();
 
 
                                 if(G0.shortlength>0) {
@@ -553,7 +556,8 @@ public class main extends JFrame implements ActionListener{
                                 else {
                                     textArea0.append("no path!");
                                 }
-                            }}
+                            }
+                        }
 
 
 
@@ -568,7 +572,7 @@ public class main extends JFrame implements ActionListener{
                             // TODO Auto-generated method stub
                             Thread thread=new Thread() {
                                 public void run() {
-                                    Frame lmf=new Frame("random");
+                                    Frame lmf=new Frame("随机游走");
                                     lmf.setBackground(Color.GRAY);
                                     lmf.setLayout(null);
                                     lmf.setBounds(300, 300, 500, 500);
@@ -607,21 +611,21 @@ public class main extends JFrame implements ActionListener{
 //									lmf.dispose();
                                     thread.stop();
                                     //设置随机游走串save提示
-                                    Dialog Dialogsave=new Dialog(mf);
-                                    Dialogsave.setTitle("Notice!");
-                                    Dialogsave.setBounds(300, 300, 600, 300);
-                                    Dialogsave.setLayout(null);
-                                    Dialogsave.setVisible(true);
+                                    Dialog dialogsave=new Dialog(mf);
+                                    dialogsave.setTitle("Notice!");
+                                    dialogsave.setBounds(300, 300, 600, 300);
+                                    dialogsave.setLayout(null);
+                                    dialogsave.setVisible(true);
                                     Label labelsave =new Label();
                                     labelsave.setText("    Enter save and save random strings into file");
                                     labelsave.setFont(new Font("宋体",Font.PLAIN,20));
                                     labelsave.setBackground(Color.GREEN);
                                     labelsave.setBounds(0, 0, 600, 250);
-                                    Dialogsave.add(labelsave);
+                                    dialogsave.add(labelsave);
 
                                     Button buttonsave=new Button("SAVE");
                                     buttonsave.setBounds(0, 250, 600, 50);
-                                    Dialogsave.add(buttonsave);
+                                    dialogsave.add(buttonsave);
                                     buttonsave.addActionListener(new ActionListener() {
 
                                         @Override
@@ -629,13 +633,15 @@ public class main extends JFrame implements ActionListener{
                                             // TODO Auto-generated method stub
                                             File randomfile=new File(randomwalklocate);
                                             FileWriter fw = null;
+                                            BufferedWriter bw= null;
                                             try {
                                                 fw = new FileWriter(randomfile);
-                                            } catch (IOException e2) {
-                                                // TODO Auto-generated catch block
-                                                e2.printStackTrace();
+                                                bw=new BufferedWriter(fw);
+
+                                            } catch (IOException e1) {
+                                                e1.printStackTrace();
                                             }
-                                            BufferedWriter bw=new BufferedWriter(fw);
+
                                             try {
                                                 randomfile.createNewFile();
                                             } catch (IOException e1) {
@@ -657,14 +663,24 @@ public class main extends JFrame implements ActionListener{
                                                 }
 
                                             }
-                                            try {
+                                            if ( bw != null) try {
                                                 bw.close();
-                                                fw.close();
                                             } catch (IOException e1) {
-                                                // TODO Auto-generated catch block
                                                 e1.printStackTrace();
                                             }
-                                            Dialogsave.dispose();
+                                            if ( fw != null) try {
+                                                fw.close();
+                                            } catch (IOException e1) {
+                                                e1.printStackTrace();
+                                            }
+//                                            try {
+//                                                bw.close();
+//                                                fw.close();
+//                                            } catch (IOException e1) {
+//                                                 TODO Auto-generated catch block
+//                                                e1.printStackTrace();
+//                                            }
+                                            dialogsave.dispose();
                                             Dialog dialogsuccess=new Dialog(mf, "NOTICE");
                                             dialogsuccess.setVisible(true);
                                             dialogsuccess.setBounds(300, 200, 400, 400);
@@ -701,7 +717,7 @@ public class main extends JFrame implements ActionListener{
         });
 
         /**
-         * 获取文件内容
+         * 获取文件内容.
          */
         StrDeal sd=new StrDeal();
 
@@ -712,11 +728,8 @@ public class main extends JFrame implements ActionListener{
 
 
 
-
-
-
         /**
-         * 根据哈希表建立邻接矩阵
+        * 根据哈希表建立邻接矩阵
          */
         Matrix mt=new Matrix();
 
@@ -865,8 +878,8 @@ class ExerciseHash {
 
 class Graph {
     //
-    int Enum;
-    int Vnum;
+    //int Enum;
+    //int Vnum;
     public static int shortlength;
     private static final int INF=Integer.MAX_VALUE;
 
@@ -884,10 +897,10 @@ class Graph {
     public  Graph(int Vnum,int Enum,Matrix mt){
 
 
-        Varray=new Vnode[Vnum];
+        this.Varray=new Vnode[Vnum];
 
         for(int i=0;i<Vnum;i++) {
-            Varray[i]=new Vnode();
+            this.Varray[i]=new Vnode();
             Varray[i].data=mt.hashkey[i];
             Varray[i].firstedge=null;
         }
@@ -924,9 +937,10 @@ class Graph {
     public void Linklast(Enode list,Enode enodeadd) {
         Enode pe=list;
 
-        while(pe.nextedge!=null)
-            pe=pe.nextedge;
+        while(pe.nextedge!=null) {
+        pe=pe.nextedge;
         pe.nextedge=enodeadd;
+         }
 
     }
     public void LinklistPrint(Matrix mt) {
@@ -1062,7 +1076,10 @@ class Graph {
                         }
                         pe=pe.nextedge;
                     }
-                }else ;
+                }else
+                {
+                    System.out.println("error");
+                };
             }
         }
         if((flag1==-1)&&(flag2==1)) {
@@ -1398,7 +1415,7 @@ class GraphViz
     /**
      * The dir. where temporary files will be created.
      */
-    private static String TEMP_DIR = "A:\\Code\\IDEA\\lab1";
+    private static String TEMP_DIR = "A:\\Code\\IDEA\\Lab1final";
 
     /**
      * Where is your dot program located? It will be called externally.
@@ -1565,7 +1582,7 @@ class GraphViz
             // Close it if we need to
             if( in != null ) in.close();
 
-            if (img.delete() == false)
+            if (!img.delete())
                 System.err.println("Warning: " + img.getAbsolutePath() + " could not be deleted!");
         }
         catch (java.io.IOException ioe) {
@@ -1854,10 +1871,6 @@ class StrDeal {
 //			}
 
         return finalStr;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Just add something...");
     }
 
 }
