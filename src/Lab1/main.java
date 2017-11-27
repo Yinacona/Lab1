@@ -943,22 +943,7 @@ class Graph {
          }
 
     }
-    public void LinklistPrint(Matrix mt) {
-        for(int i=0;i<Varray.length;i++) {
-            System.out.print("point"+ i +" name:"+Varray[i].data+" :");
-            Enode pe=Varray[i].firstedge;
-            if(pe==null) {
-                System.out.println("null");
-            }else {
-                while(pe!=null) {
-                    System.out.print("->"+mt.hashkey[pe.serial]);
-                    pe=pe.nextedge;
-                }
-                System.out.println();
-            }
 
-        }
-    }
     public String[] LinklistPrint1(Matrix mt) {
         String[] printstr=new String[Varray.length];
         for(int i=0;i<Varray.length;i++) {
@@ -976,19 +961,23 @@ class Graph {
         }
         return printstr;
     }
-
-    public String Createpicture(Matrix mt) {
-        String picturestr=new String();
-        int size=mt.size;
-        for(int i=0;i<size;i++) {
-            for(int j=0;j<size;j++) {
-                if(mt.maxArray[i][j]!=0) {
-                    picturestr=picturestr+mt.hashkey[i]+"->"+mt.hashkey[j]+" [ label = "+mt.maxArray[i][j]+" ]"+";";
+    public void LinklistPrint(Matrix mt) {
+        for(int i=0;i<Varray.length;i++) {
+            System.out.print("point"+ i +" name:"+Varray[i].data+" :");
+            Enode pe=Varray[i].firstedge;
+            if(pe==null) {
+                System.out.println("null");
+            }else {
+                while(pe!=null) {
+                    System.out.print("->"+mt.hashkey[pe.serial]);
+                    pe=pe.nextedge;
                 }
+                System.out.println();
             }
+
         }
-        return picturestr;
     }
+
 
     public String CreateShortestPicture(String word1,String word2,Matrix mt,int[][] path) {
         shortlength=0;
@@ -1036,6 +1025,20 @@ class Graph {
 
         return picturestr;
     }
+
+    public String Createpicture(Matrix mt) {
+        String picturestr=new String();
+        int size=mt.size;
+        for(int i=0;i<size;i++) {
+            for(int j=0;j<size;j++) {
+                if(mt.maxArray[i][j]!=0) {
+                    picturestr=picturestr+mt.hashkey[i]+"->"+mt.hashkey[j]+" [ label = "+mt.maxArray[i][j]+" ]"+";";
+                }
+            }
+        }
+        return picturestr;
+    }
+
 
 
     public void findBridge(String word1,String word2) {
@@ -1160,7 +1163,7 @@ class Graph {
 
 
 
-    public String queryBridgeWords1(String word1,String word2) {
+        public String queryBridgeWords1(String word1,String word2) {
 
         int flag1=-1;
         int flag2=-1;
@@ -1267,32 +1270,6 @@ class Graph {
         return path;
     }
 
-    public void calcShortestPath(String word1,String word2,Matrix mt,int[][] path) {
-
-        int begin = 0;
-        int over = 0;
-        for(int i=0;i<mt.size;i++) {
-            if(word1.equals(mt.hashkey[i])){
-                begin=i;
-            }
-        }
-        for(int i=0;i<mt.size;i++) {
-            if(word2.equals(mt.hashkey[i])) {
-                over=i;
-            }
-        }
-        int mid=path[begin][over];
-        System.out.print(mt.hashkey[begin]+"->");
-        System.out.print(mt.hashkey[mid]);
-        while(mid!=over) {
-
-            begin=mid;
-            mid=path[begin][over];
-            System.out.print("->"+mt.hashkey[mid]);
-        }
-        System.out.println();
-
-    }
     public String calcShortestPath1(String word1,String word2,Matrix mt,int[][] path) {
 
         String shortestpath=new String();
@@ -1336,6 +1313,32 @@ class Graph {
         {
             return "3";
         }
+    }
+    public void calcShortestPath(String word1,String word2,Matrix mt,int[][] path) {
+
+        int begin = 0;
+        int over = 0;
+        for(int i=0;i<mt.size;i++) {
+            if(word1.equals(mt.hashkey[i])){
+                begin=i;
+            }
+        }
+        for(int i=0;i<mt.size;i++) {
+            if(word2.equals(mt.hashkey[i])) {
+                over=i;
+            }
+        }
+        int mid=path[begin][over];
+        System.out.print(mt.hashkey[begin]+"->");
+        System.out.print(mt.hashkey[mid]);
+        while(mid!=over) {
+
+            begin=mid;
+            mid=path[begin][over];
+            System.out.print("->"+mt.hashkey[mid]);
+        }
+        System.out.println();
+
     }
 
 
